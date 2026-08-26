@@ -1,6 +1,7 @@
 # ppads-grupo18-mack
 ## Integrantes:
 Gabriel Oliveira Sarmento - 10724499
+Giuliana Dias Guimarães - 10423527
 Vânia Gomes Marinelli - 10721502
 Yasmin Keller Santos da Silva - 10727922
 
