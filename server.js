@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const pool = require('./src/config/db');
 
+const notaFiscalRoutes = require('./src/routes/notaFiscal.routes');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +18,16 @@ app.get('/api/health', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ status: 'erro', banco: 'desconectado', detalhe: err.message });
   }
+});
+
+app.use('/api/notas-fiscais', notaFiscalRoutes);
+
+app.use((err, req, res, next) => {
+  if (err) {
+    console.error(err);
+    return res.status(400).json({ erro: err.message || 'Requisicao invalida.' });
+  }
+  next();
 });
 
 app.listen(PORT, () => {
