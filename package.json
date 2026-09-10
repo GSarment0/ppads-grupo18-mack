@@ -1,0 +1,22 @@
+{
+  "name": "validafifo",
+  "version": "1.0.0",
+  "description": "ValidaFIFO - Sistema de Controle de Validade de Produtos para Gestao FIFO em Estabelecimentos Comerciais",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:init": "node src/db/initDb.js",
+    "test": "node --test tests/"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fast-xml-parser": "^4.4.1",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.12.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
