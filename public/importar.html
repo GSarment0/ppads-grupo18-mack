@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ValidaFIFO - Importar Nota Fiscal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>ValidaFIFO</h1>
+      <p>Controle de validade e gestao FIFO</p>
+      <nav>
+        <a href="dashboard.html">Dashboard FIFO</a>
+        <a href="importar.html" class="ativo">Importar XML</a>
+      </nav>
+    </aside>
+    <main>
+      <h2>Importar Nota Fiscal (XML)</h2>
+      <p>Selecione o arquivo XML da NF-e para extrair automaticamente os produtos e quantidades.</p>
+
+      <div id="mensagem"></div>
+
+      <div class="dropzone" id="areaUpload">
+        <p>Selecione o arquivo XML da NF-e</p>
+        <input type="file" id="inputArquivo" accept=".xml" />
+      </div>
+
+      <section id="secaoItens" hidden>
+        <h3>Itens identificados</h3>
+        <p>Informe a data de validade de cada produto antes de salvar.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Codigo (EAN)</th>
+              <th>Descricao</th>
+              <th>Quantidade</th>
+              <th>Data de validade</th>
+            </tr>
+          </thead>
+          <tbody id="corpoItens"></tbody>
+        </table>
+        <br />
+        <button class="botao-primario" id="botaoSalvar">Salvar cadastro</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/importar.js"></script>
+</body>
+</html>

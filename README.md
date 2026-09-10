@@ -54,12 +54,32 @@ Para verificar se a API e o banco estão respondendo:
 curl http://localhost:3000/api/health
 ```
 
+## Passo 2 — Módulo de leitura do XML (Issue #2)
+
+Endpoint `POST /api/notas-fiscais/importar`: recebe o arquivo XML da NF-e (campo `arquivoXml`, multipart) e retorna a chave de acesso, a data de emissão e os itens identificados (código EAN, descrição e quantidade), sem gravar nada no banco ainda.
+
+## Passo 3 — Tela de cadastro e vínculo de validades (Issue #3)
+
+Acesse `http://localhost:3000/importar.html` para:
+1. Selecionar o XML da NF-e e visualizar os itens extraídos.
+2. Informar a data de validade de cada produto.
+3. Salvar o cadastro (`POST /api/notas-fiscais/confirmar`), que verifica se o produto já existe pelo código EAN (senão, cadastra um novo) e grava o lote vinculado à nota fiscal.
+
 ## Estrutura de pastas (até o momento)
 
 ```
-server.js                  # ponto de entrada (health check + arquivos estáticos)
+server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal)
 src/
   config/db.js             # conexão com o PostgreSQL (pg Pool)
   db/schema.sql            # script de criação das 4 tabelas
   db/initDb.js             # executa o schema.sql no banco configurado
+  middleware/upload.js     # upload do arquivo XML (multer)
+  services/
+    xmlParser.service.js   # leitura e extração dos dados do XML da NF-e
+    notaFiscal.service.js  # gravação de produto/lote vinculados à nota fiscal
+  routes/
+    notaFiscal.routes.js   # POST /importar e POST /confirmar
+public/
+  importar.html, js/importar.js, css/style.css   # tela de importação e cadastro de validade
+  js/api.js                                       # wrapper de chamadas à API
 ```
