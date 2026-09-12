@@ -4,6 +4,7 @@ const express = require('express');
 const pool = require('./src/config/db');
 
 const notaFiscalRoutes = require('./src/routes/notaFiscal.routes');
+const dashboardRoutes = require('./src/routes/dashboard.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 app.use('/api/notas-fiscais', notaFiscalRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.use((err, req, res, next) => {
   if (err) {

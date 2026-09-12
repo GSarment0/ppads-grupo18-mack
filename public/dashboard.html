@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ValidaFIFO - Dashboard de Vencimentos</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>ValidaFIFO</h1>
+      <p>Controle de validade e gestao FIFO</p>
+      <nav>
+        <a href="dashboard.html" class="ativo">Dashboard FIFO</a>
+        <a href="importar.html">Importar XML</a>
+      </nav>
+    </aside>
+    <main>
+      <h2>Dashboard de Vencimentos</h2>
+      <p>Produtos ativos priorizados pela logica FIFO (primeiro que vence, primeiro a sair).</p>
+
+      <div id="mensagem"></div>
+
+      <div class="cartoes" id="cartoes"></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Prioridade</th>
+            <th>Produto</th>
+            <th>Codigo (EAN)</th>
+            <th>Qtd.</th>
+            <th>Validade</th>
+            <th>Dias restantes</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="corpoTabela"></tbody>
+      </table>
+      <div id="vazio" class="vazio" hidden>Nenhum produto ativo cadastrado ainda. Importe uma nota fiscal para comecar.</div>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

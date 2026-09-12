@@ -65,10 +65,16 @@ Acesse `http://localhost:3000/importar.html` para:
 2. Informar a data de validade de cada produto.
 3. Salvar o cadastro (`POST /api/notas-fiscais/confirmar`), que verifica se o produto já existe pelo código EAN (senão, cadastra um novo) e grava o lote vinculado à nota fiscal.
 
+## Passo 4 — Dashboard FIFO e alertas de cor (Issue #4)
+
+Acesse `http://localhost:3000` (redireciona para `dashboard.html`) para ver:
+- Os cartões-resumo com a quantidade de produtos monitorados, vencidos e a vencer em até 7, 15 e 30 dias.
+- A tabela de produtos ativos, obtida via `GET /api/dashboard`, ordenada por `data_validade ASC` (lógica FIFO), com destaque de cor por faixa de vencimento: vermelho (vencido), laranja (até 7 dias), amarelo (até 15 dias) e verde (dentro do prazo).
+
 ## Estrutura de pastas (até o momento)
 
 ```
-server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal)
+server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal e dashboard)
 src/
   config/db.js             # conexão com o PostgreSQL (pg Pool)
   db/schema.sql            # script de criação das 4 tabelas
@@ -77,9 +83,13 @@ src/
   services/
     xmlParser.service.js   # leitura e extração dos dados do XML da NF-e
     notaFiscal.service.js  # gravação de produto/lote vinculados à nota fiscal
+    dashboard.service.js   # consulta FIFO e classificação por faixa/cor de vencimento
   routes/
     notaFiscal.routes.js   # POST /importar e POST /confirmar
+    dashboard.routes.js    # GET /api/dashboard
 public/
-  importar.html, js/importar.js, css/style.css   # tela de importação e cadastro de validade
-  js/api.js                                       # wrapper de chamadas à API
+  index.html                                      # redireciona para dashboard.html
+  dashboard.html, js/dashboard.js                  # dashboard FIFO com cartões e tabela colorida
+  importar.html, js/importar.js, css/style.css     # tela de importação e cadastro de validade
+  js/api.js                                        # wrapper de chamadas à API
 ```

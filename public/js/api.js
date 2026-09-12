@@ -16,4 +16,5 @@ const Api = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }),
+  buscarDashboard: () => apiRequest('/api/dashboard'),
 };
