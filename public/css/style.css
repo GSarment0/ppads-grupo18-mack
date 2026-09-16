@@ -155,6 +155,14 @@ button, .botao {
 
 .botao-primario:hover { background: #1d4ed8; }
 
+.botao-perigo {
+  background: #fff;
+  color: var(--vermelho);
+  border: 1px solid var(--vermelho);
+}
+
+.botao-perigo:hover { background: var(--vermelho-fundo); }
+
 .dropzone {
   border: 2px dashed var(--cinza-borda);
   border-radius: 10px;

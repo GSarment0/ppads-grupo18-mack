@@ -5,6 +5,7 @@ const pool = require('./src/config/db');
 
 const notaFiscalRoutes = require('./src/routes/notaFiscal.routes');
 const dashboardRoutes = require('./src/routes/dashboard.routes');
+const loteRoutes = require('./src/routes/lote.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.get('/api/health', async (req, res) => {
 
 app.use('/api/notas-fiscais', notaFiscalRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/lotes', loteRoutes);
 
 app.use((err, req, res, next) => {
   if (err) {
@@ -33,5 +35,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`ValidaFIFO rodando em http://localhost:${PORT}`);
+  console.log(`ValidaFIFO API + Web App rodando em http://localhost:${PORT}`);
 });

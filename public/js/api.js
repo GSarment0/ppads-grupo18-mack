@@ -17,4 +17,5 @@ const Api = {
       body: JSON.stringify(payload),
     }),
   buscarDashboard: () => apiRequest('/api/dashboard'),
+  darBaixa: (loteId) => apiRequest(`/api/lotes/${loteId}/baixa`, { method: 'PATCH' }),
 };

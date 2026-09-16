@@ -71,10 +71,14 @@ Acesse `http://localhost:3000` (redireciona para `dashboard.html`) para ver:
 - Os cartões-resumo com a quantidade de produtos monitorados, vencidos e a vencer em até 7, 15 e 30 dias.
 - A tabela de produtos ativos, obtida via `GET /api/dashboard`, ordenada por `data_validade ASC` (lógica FIFO), com destaque de cor por faixa de vencimento: vermelho (vencido), laranja (até 7 dias), amarelo (até 15 dias) e verde (dentro do prazo).
 
+## Passo 5 — Botão de baixa (Issue #5)
+
+Na tabela do Dashboard FIFO, cada produto tem um botão "Dar baixa" que chama `PATCH /api/lotes/:id/baixa`, atualizando o status do lote para `baixado` no banco de dados e removendo-o imediatamente da lista de produtos ativos.
+
 ## Estrutura de pastas (até o momento)
 
 ```
-server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal e dashboard)
+server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal, dashboard e lote)
 src/
   config/db.js             # conexão com o PostgreSQL (pg Pool)
   db/schema.sql            # script de criação das 4 tabelas
@@ -84,12 +88,14 @@ src/
     xmlParser.service.js   # leitura e extração dos dados do XML da NF-e
     notaFiscal.service.js  # gravação de produto/lote vinculados à nota fiscal
     dashboard.service.js   # consulta FIFO e classificação por faixa/cor de vencimento
+    lote.service.js        # registro de baixa de um lote
   routes/
     notaFiscal.routes.js   # POST /importar e POST /confirmar
     dashboard.routes.js    # GET /api/dashboard
+    lote.routes.js         # PATCH /api/lotes/:id/baixa
 public/
   index.html                                      # redireciona para dashboard.html
-  dashboard.html, js/dashboard.js                  # dashboard FIFO com cartões e tabela colorida
+  dashboard.html, js/dashboard.js                  # dashboard FIFO com cartões, tabela colorida e botão de baixa
   importar.html, js/importar.js, css/style.css     # tela de importação e cadastro de validade
   js/api.js                                        # wrapper de chamadas à API
 ```

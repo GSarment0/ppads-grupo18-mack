@@ -64,6 +64,7 @@ function montarTabela(produtos) {
         <td>${formatarData(produto.dataValidade)}</td>
         <td>${formatarDiasRestantes(produto.diasRestantes)}</td>
         <td><span class="status-pill ${produto.cor}">${ROTULOS_FAIXA[produto.faixa]}</span></td>
+        <td><button class="botao-perigo" data-acao="baixa" data-lote-id="${produto.loteId}">Dar baixa</button></td>
       </tr>`
     )
     .join('');
@@ -78,5 +79,24 @@ async function carregarDashboard() {
     mostrarMensagem(err.message, 'erro');
   }
 }
+
+document.getElementById('corpoTabela').addEventListener('click', async (evento) => {
+  const botao = evento.target.closest('button[data-acao="baixa"]');
+  if (!botao) return;
+
+  const loteId = botao.dataset.loteId;
+  botao.disabled = true;
+  botao.textContent = 'Registrando...';
+
+  try {
+    await Api.darBaixa(loteId);
+    mostrarMensagem('Baixa registrada com sucesso.', 'sucesso');
+    await carregarDashboard();
+  } catch (err) {
+    mostrarMensagem(err.message, 'erro');
+    botao.disabled = false;
+    botao.textContent = 'Dar baixa';
+  }
+});
 
 carregarDashboard();
