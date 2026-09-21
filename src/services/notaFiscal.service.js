@@ -1,5 +1,7 @@
 const pool = require('../config/db');
 
+class NotaJaImportadaError extends Error {}
+
 /**
  * Confirma a importacao de uma nota fiscal ja lida (ver xmlParser.service.js):
  * - grava (ou reaproveita) a NotaFiscal pela chave de acesso;
@@ -15,10 +17,13 @@ async function confirmarImportacao({ chaveAcesso, dataEmissao, itens }) {
     const notaResult = await client.query(
       `INSERT INTO nota_fiscal (chave_acesso, data_emissao)
        VALUES ($1, $2)
-       ON CONFLICT (chave_acesso) DO UPDATE SET chave_acesso = EXCLUDED.chave_acesso
+       ON CONFLICT (chave_acesso) DO NOTHING
        RETURNING id`,
       [chaveAcesso, dataEmissao]
     );
+    if (notaResult.rows.length === 0) {
+      throw new NotaJaImportadaError('Esta nota fiscal ja foi importada anteriormente.');
+    }
     const notaFiscalId = notaResult.rows[0].id;
 
     const lotesCriados = [];
@@ -64,4 +69,4 @@ async function confirmarImportacao({ chaveAcesso, dataEmissao, itens }) {
   }
 }
 
-module.exports = { confirmarImportacao };
+module.exports = { confirmarImportacao, NotaJaImportadaError };

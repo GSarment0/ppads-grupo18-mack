@@ -1,7 +1,7 @@
 const express = require('express');
 const upload = require('../middleware/upload');
 const { parseNfeXml, XmlInvalidoError } = require('../services/xmlParser.service');
-const { confirmarImportacao } = require('../services/notaFiscal.service');
+const { confirmarImportacao, NotaJaImportadaError } = require('../services/notaFiscal.service');
 
 const router = express.Router();
 
@@ -36,6 +36,9 @@ router.post('/confirmar', async (req, res) => {
     const resultado = await confirmarImportacao({ chaveAcesso, dataEmissao, itens });
     return res.status(201).json(resultado);
   } catch (err) {
+    if (err instanceof NotaJaImportadaError) {
+      return res.status(409).json({ erro: err.message });
+    }
     console.error('Erro ao confirmar importacao:', err);
     return res.status(400).json({ erro: err.message || 'Nao foi possivel salvar a importacao.' });
   }
