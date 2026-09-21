@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+  <NFe>
+    <infNFe Id="NFe35240114200166000187550010000001231000000010" versao="4.00">
+      <ide>
+        <cUF>35</cUF>
+        <nNF>123</nNF>
+        <dhEmi>2026-09-05T10:30:00-03:00</dhEmi>
+      </ide>
+      <det nItem="1">
+        <prod>
+          <cProd>1001</cProd>
+          <cEAN>7891000100103</cEAN>
+          <xProd>Leite Integral 1L</xProd>
+          <qCom>18.0000</qCom>
+        </prod>
+      </det>
+      <det nItem="2">
+        <prod>
+          <cProd>1002</cProd>
+          <cEAN>7891000200104</cEAN>
+          <xProd>Iogurte Natural 170g</xProd>
+          <qCom>24.0000</qCom>
+        </prod>
+      </det>
+      <det nItem="3">
+        <prod>
+          <cProd>1003</cProd>
+          <cEAN>SEM GTIN</cEAN>
+          <cEANTrib>7891000300105</cEANTrib>
+          <xProd>Pao de Forma Integral 500g</xProd>
+          <qCom>12.0000</qCom>
+        </prod>
+      </det>
+    </infNFe>
+  </NFe>
+  <protNFe>
+    <infProt>
+      <chNFe>35240114200166000187550010000001231000000010</chNFe>
+    </infProt>
+  </protNFe>
+</nfeProc>

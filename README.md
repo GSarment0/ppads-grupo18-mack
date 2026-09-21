@@ -75,7 +75,35 @@ Acesse `http://localhost:3000` (redireciona para `dashboard.html`) para ver:
 
 Na tabela do Dashboard FIFO, cada produto tem um botão "Dar baixa" que chama `PATCH /api/lotes/:id/baixa`, atualizando o status do lote para `baixado` no banco de dados e removendo-o imediatamente da lista de produtos ativos.
 
-## Estrutura de pastas (até o momento)
+## Passo 6 — Testes e publicação / deploy (Issue #6)
+
+```bash
+npm test
+```
+
+Executa os testes automatizados do módulo de leitura de XML (`tests/xmlParser.test.js`) contra arquivos de exemplo em `tests/fixtures/` (uma NF-e válida com múltiplos itens e códigos EAN, e um arquivo inválido para o fluxo de erro). Os testes com XMLs reais de notas fiscais ainda devem ser feitos pela equipe para ajustar eventuais falhas.
+
+Para publicar em nuvem, qualquer serviço que rode Node.js + PostgreSQL é compatível (ex.: Render, Railway):
+
+1. Criar um banco PostgreSQL gerenciado no provedor escolhido e copiar as credenciais.
+2. Criar um serviço Web apontando para este repositório, com `npm install` como build command e `npm start` como start command.
+3. Configurar as variáveis de ambiente (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `PORT`) no painel do provedor.
+4. Rodar `npm run db:init` uma vez (via console do provedor) para criar as tabelas no banco de produção.
+
+## Resumo do escopo por Issue
+
+| Issue | Entrega | Arquivos principais |
+|---|---|---|
+| #1 | Banco de dados e conexão | `src/db/schema.sql`, `src/db/initDb.js`, `src/config/db.js` |
+| #2 | Módulo de leitura do XML | `src/services/xmlParser.service.js`, `src/middleware/upload.js` |
+| #3 | Tela de cadastro e vínculo de validades | `public/importar.html`, `public/js/importar.js`, `src/services/notaFiscal.service.js` |
+| #4 | Dashboard FIFO e alertas de cor | `src/services/dashboard.service.js`, `public/dashboard.html`, `public/js/dashboard.js` |
+| #5 | Botão de baixa | `src/services/lote.service.js`, `src/routes/lote.routes.js` |
+| #6 | Testes e publicação | `tests/xmlParser.test.js`, `tests/fixtures/` |
+
+Funcionalidades como autenticação de usuário (UC01) e geração de relatórios (UC07), previstas no documento de especificação geral do projeto, **não fazem parte do escopo das Issues #1–#6** e, portanto, não foram implementadas nesta iteração.
+
+## Estrutura de pastas
 
 ```
 server.js                  # ponto de entrada (health check, arquivos estáticos, rotas de nota fiscal, dashboard e lote)
@@ -98,4 +126,5 @@ public/
   dashboard.html, js/dashboard.js                  # dashboard FIFO com cartões, tabela colorida e botão de baixa
   importar.html, js/importar.js, css/style.css     # tela de importação e cadastro de validade
   js/api.js                                        # wrapper de chamadas à API
+tests/                      # testes automatizados e XMLs de exemplo (Issue #6)
 ```
