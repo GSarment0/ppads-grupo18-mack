@@ -87,7 +87,7 @@ Para publicar em nuvem, qualquer serviço que rode Node.js + PostgreSQL é compa
 
 1. Criar um banco PostgreSQL gerenciado no provedor escolhido e copiar as credenciais.
 2. Criar um serviço Web apontando para este repositório, com `npm install` como build command e `npm start` como start command.
-3. Configurar as variáveis de ambiente (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `PORT`) no painel do provedor.
+3. Configurar as variáveis de ambiente (`DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `PORT`) no painel do provedor. Se o banco exigir conexão segura, definir também `DB_SSL=true`.
 4. Rodar `npm run db:init` uma vez (via console do provedor) para criar as tabelas no banco de produção.
 
 ## Resumo do escopo por Issue
