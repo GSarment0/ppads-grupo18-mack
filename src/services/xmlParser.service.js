@@ -72,9 +72,9 @@ function parseNfeXml(xmlContent) {
     const prod = det.prod || {};
     const codigoEan = extrairCodigoEan(prod);
     const descricao = prod.xProd ? String(prod.xProd).trim() : null;
-    const quantidade = prod.qCom !== undefined ? Math.trunc(Number(prod.qCom)) : null;
+    const quantidade = prod.qCom !== undefined ? Number(prod.qCom) : null;
 
-    if (!codigoEan || !descricao || !quantidade || quantidade <= 0) {
+    if (!codigoEan || !descricao || !Number.isFinite(quantidade) || quantidade <= 0) {
       throw new XmlInvalidoError('Um ou mais itens da nota fiscal estao com dados incompletos (EAN, descricao ou quantidade).');
     }
 

@@ -42,7 +42,7 @@ async function obterDashboard() {
       loteId: row.id,
       codigoBarras: row.codigo_barras,
       descricao: row.descricao,
-      quantidade: row.quantidade,
+      quantidade: Number(row.quantidade),
       dataValidade: row.data_validade,
       diasRestantes,
       faixa,

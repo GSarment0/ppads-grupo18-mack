@@ -33,5 +33,8 @@ CREATE TABLE IF NOT EXISTS lote (
     criado_em TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+-- Produtos vendidos por peso/volume (ex.: 1,5 kg) possuem quantidade decimal na NF-e.
+ALTER TABLE lote ALTER COLUMN quantidade TYPE NUMERIC(12,3);
+
 CREATE INDEX IF NOT EXISTS idx_lote_status_validade ON lote (status, data_validade);
 CREATE INDEX IF NOT EXISTS idx_lote_produto ON lote (produto_id);

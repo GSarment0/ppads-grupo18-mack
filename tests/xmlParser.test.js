@@ -27,6 +27,11 @@ test('extrai corretamente o EAN, a descricao e a quantidade de cada item', () =>
   assert.equal(item3.quantidade, 12);
 });
 
+test('preserva quantidades decimais (produtos vendidos por peso)', () => {
+  const xmlPeso = xmlValido.replace('<qCom>18.0000</qCom>', '<qCom>1.5000</qCom>');
+  assert.equal(parseNfeXml(xmlPeso).itens[0].quantidade, 1.5);
+});
+
 test('rejeita um arquivo XML que nao segue a estrutura de uma NF-e', () => {
   assert.throws(() => parseNfeXml(xmlInvalido), XmlInvalidoError);
 });
