@@ -8,6 +8,9 @@ Repositório do aplicativo desenvolvido para a disciplina de Projeto Prático Pr
 - Vânia Gomes Marinelli - 10721502
 - Yasmin Keller Santos da Silva - 10727922
 
+**Aplicação publicada:** https://ppads-grupo18-mack.onrender.com/dashboard.html
+_(hospedada no plano gratuito do Render — o serviço "dorme" após um tempo sem uso e pode levar cerca de 30-50s para responder na primeira requisição)._
+
 ## Sobre o projeto
 
 O **ValidaFIFO** é um sistema de apoio à gestão de validade de produtos para pequeno e médio varejo. Ele lê o XML da Nota Fiscal Eletrônica (NF-e) para identificar automaticamente os itens e quantidades adquiridas, permite o cadastro manual da data de validade de cada produto e mantém um dashboard organizado pela lógica FIFO (primeiro que vence, primeiro a sair).
