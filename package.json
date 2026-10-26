@@ -1,6 +1,6 @@
 {
   "name": "validafifo",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "ValidaFIFO - Sistema de Controle de Validade de Produtos para Gestao FIFO em Estabelecimentos Comerciais",
   "main": "server.js",
   "scripts": {
