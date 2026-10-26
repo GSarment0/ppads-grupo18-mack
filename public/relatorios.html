@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ValidaFIFO - Relatorios</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <h1>ValidaFIFO</h1>
+      <p>Controle de validade e gestao FIFO</p>
+      <nav>
+        <a href="dashboard.html">Dashboard FIFO</a>
+        <a href="importar.html">Importar XML</a>
+        <a href="relatorios.html" class="ativo">Relatorios</a>
+      </nav>
+      <div class="sidebar-rodape">
+        <strong id="nomeUsuario"></strong>
+        <button class="botao-sair" id="botaoSair">Sair</button>
+      </div>
+    </aside>
+    <main>
+      <h2>Relatorio de Vencimentos</h2>
+      <p>Consulte os produtos vencidos e a vencer em um periodo e exporte o relatorio em PDF.</p>
+
+      <form class="filtros" id="formFiltros">
+        <label class="campo">Periodo inicial
+          <input type="date" id="inicio" required />
+        </label>
+        <label class="campo">Periodo final
+          <input type="date" id="fim" required />
+        </label>
+        <label class="campo">Situacao
+          <select id="situacao">
+            <option value="todos">Todos</option>
+            <option value="vencidos">Vencidos</option>
+            <option value="a_vencer">A vencer</option>
+          </select>
+        </label>
+        <div class="filtros-acoes">
+          <button type="submit" class="botao-primario" id="botaoGerar">Gerar relatorio</button>
+          <button type="button" class="botao-secundario" id="botaoExportar" disabled>Exportar PDF</button>
+        </div>
+      </form>
+
+      <div id="mensagem"></div>
+
+      <section id="previa" hidden>
+        <h3>Previa do relatorio</h3>
+        <div class="cartoes" id="resumo"></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Codigo (EAN)</th>
+              <th>Qtd.</th>
+              <th>Validade</th>
+              <th>Dias</th>
+              <th>Situacao</th>
+              <th>Estoque</th>
+            </tr>
+          </thead>
+          <tbody id="corpoRelatorio"></tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/sessao.js"></script>
+  <script src="js/relatorios.js"></script>
+</body>
+</html>

@@ -109,6 +109,39 @@ body {
   font-weight: 400;
 }
 
+.filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0 16px;
+  align-items: end;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 16px 16px 0;
+  margin: 16px 0;
+}
+
+.filtros-acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filtros-acoes button { white-space: nowrap; }
+
+.botao-secundario {
+  background: #fff;
+  color: var(--azul);
+  border: 1px solid var(--azul);
+}
+
+.botao-secundario:disabled,
+.botao-primario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .cartao-login .botao-primario {
   width: 100%;
   padding: 11px;

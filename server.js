@@ -7,6 +7,7 @@ const authRoutes = require('./src/routes/auth.routes');
 const notaFiscalRoutes = require('./src/routes/notaFiscal.routes');
 const dashboardRoutes = require('./src/routes/dashboard.routes');
 const loteRoutes = require('./src/routes/lote.routes');
+const relatorioRoutes = require('./src/routes/relatorio.routes');
 const { exigirAutenticacaoApi, exigirAutenticacaoPagina } = require('./src/middleware/auth');
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api', exigirAutenticacaoApi);
 app.use('/api/notas-fiscais', notaFiscalRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/lotes', loteRoutes);
+app.use('/api/relatorios', relatorioRoutes);
 
 app.use((err, req, res, next) => {
   if (err) {

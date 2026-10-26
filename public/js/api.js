@@ -33,4 +33,19 @@ const Api = {
     }),
   buscarDashboard: () => apiRequest('/api/dashboard'),
   darBaixa: (loteId) => apiRequest(`/api/lotes/${loteId}/baixa`, { method: 'PATCH' }),
+  buscarRelatorio: (filtros) => apiRequest(`/api/relatorios?${new URLSearchParams(filtros)}`),
+  baixarRelatorioPdf: async (filtros) => {
+    const resposta = await fetch(`/api/relatorios/pdf?${new URLSearchParams(filtros)}`);
+    if (resposta.status === 401) {
+      window.location.href = 'login.html';
+      throw new Error('Sessao expirada. Faca login novamente.');
+    }
+    if (!resposta.ok) {
+      const dados = await resposta.json().catch(() => ({}));
+      throw new Error(dados.erro || 'Nao foi possivel gerar o relatorio.');
+    }
+    const disposicao = resposta.headers.get('Content-Disposition') || '';
+    const nome = (disposicao.match(/filename="([^"]+)"/) || [])[1] || 'relatorio-vencimentos.pdf';
+    return { blob: await resposta.blob(), nomeArquivo: nome };
+  },
 };
