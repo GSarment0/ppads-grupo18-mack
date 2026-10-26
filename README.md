@@ -19,6 +19,11 @@ Documento de especificação completo: `ValidaFIFO_Documento_de_Projeto-1.pdf` (
 
 O desenvolvimento desta 1ª iteração segue as Issues #1 a #6 do repositório, implementadas em etapas.
 
+## Versões
+
+- **v1** (tag `v1`): entrega da 1ª Iteração da Fase de Construção.
+- **Iteração 2** (branch `iteracao2`): em andamento.
+
 ## Arquitetura
 
 - **Frontend**: HTML/CSS/JavaScript puro (sem build step), servido como arquivos estáticos.
