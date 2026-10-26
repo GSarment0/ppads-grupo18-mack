@@ -18,7 +18,7 @@ function formatarDiasRestantes(dias) {
 
 function mostrarMensagem(texto, tipo) {
   const container = document.getElementById('mensagem');
-  container.innerHTML = texto ? `<div class="mensagem ${tipo}">${texto}</div>` : '';
+  container.innerHTML = texto ? `<div class="mensagem ${tipo}">${escaparHtml(texto)}</div>` : '';
 }
 
 function montarCartoes(resumo) {
@@ -56,15 +56,15 @@ function montarTabela(produtos) {
   corpo.innerHTML = produtos
     .map(
       (produto, indice) => `
-      <tr data-lote-id="${produto.loteId}">
+      <tr data-lote-id="${escaparHtml(produto.loteId)}">
         <td>${indice + 1}</td>
-        <td>${produto.descricao}</td>
-        <td>${produto.codigoBarras}</td>
-        <td>${produto.quantidade}</td>
+        <td>${escaparHtml(produto.descricao)}</td>
+        <td>${escaparHtml(produto.codigoBarras)}</td>
+        <td>${escaparHtml(produto.quantidade)}</td>
         <td>${formatarData(produto.dataValidade)}</td>
         <td>${formatarDiasRestantes(produto.diasRestantes)}</td>
         <td><span class="status-pill ${produto.cor}">${ROTULOS_FAIXA[produto.faixa]}</span></td>
-        <td><button class="botao-perigo" data-acao="baixa" data-lote-id="${produto.loteId}">Dar baixa</button></td>
+        <td><button class="botao-perigo" data-acao="baixa" data-lote-id="${escaparHtml(produto.loteId)}">Dar baixa</button></td>
       </tr>`
     )
     .join('');

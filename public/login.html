@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ValidaFIFO - Login</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="pagina-login">
+    <form class="cartao-login" id="formLogin" novalidate>
+      <h1>ValidaFIFO</h1>
+      <p class="subtitulo">Controle de validade e gestao FIFO</p>
+
+      <div id="mensagem"></div>
+
+      <label class="campo">E-mail
+        <input type="email" id="email" autocomplete="username" required />
+      </label>
+      <label class="campo">Senha
+        <input type="password" id="senha" autocomplete="current-password" required />
+      </label>
+
+      <button type="submit" class="botao-primario" id="botaoEntrar">Entrar</button>
+    </form>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>
