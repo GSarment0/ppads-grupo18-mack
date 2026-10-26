@@ -11,6 +11,8 @@ Repositório do aplicativo desenvolvido para a disciplina de Projeto Prático Pr
 **Aplicação publicada:** https://ppads-grupo18-mack.onrender.com
 _(plano gratuito do Render: após um tempo sem uso o serviço "dorme" e a primeira requisição pode levar de 30 a 50 segundos)._
 
+> **Acesso:** desde a Iteração 2 a aplicação exige login (e-mail e senha). Os usuários são cadastrados pelo responsável técnico (comando `npm run user:create` ou variáveis `ADMIN_*`, descritos abaixo). Na instância publicada no Render nenhum usuário foi cadastrado; por isso, para testar todas as funcionalidades, siga o passo a passo "Como executar a aplicação no seu computador".
+
 ## Sobre o projeto
 
 O **ValidaFIFO** é um sistema de apoio à gestão de validade de produtos para o pequeno e médio varejo. Ele lê o XML da Nota Fiscal Eletrônica (NF-e) para identificar automaticamente os itens e as quantidades adquiridas, permite o cadastro manual da data de validade de cada produto, mantém um dashboard organizado pela lógica FIFO (primeiro que vence, primeiro a sair) e gera relatórios de produtos vencidos e a vencer. O acesso é restrito a usuários cadastrados.
