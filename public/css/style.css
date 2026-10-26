@@ -35,6 +35,117 @@ body {
   color: #fff;
   padding: 24px 16px;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-rodape {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 13px;
+}
+
+.sidebar-rodape strong {
+  display: block;
+  margin-bottom: 8px;
+  word-break: break-word;
+}
+
+.botao-sair {
+  background: transparent;
+  color: #e5e9f5;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.botao-sair:hover { background: rgba(255, 255, 255, 0.12); }
+
+.pagina-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.cartao-login {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 12px;
+  padding: 32px 28px;
+}
+
+.cartao-login h1 {
+  margin: 0 0 4px;
+  text-align: center;
+  color: var(--azul-escuro);
+}
+
+.cartao-login .subtitulo {
+  margin: 0 0 24px;
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.campo {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 9px 10px;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0 16px;
+  align-items: end;
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 16px 16px 0;
+  margin: 16px 0;
+}
+
+.filtros-acoes {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filtros-acoes button { white-space: nowrap; }
+
+.botao-secundario {
+  background: #fff;
+  color: var(--azul);
+  border: 1px solid var(--azul);
+}
+
+.botao-secundario:disabled,
+.botao-primario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cartao-login .botao-primario {
+  width: 100%;
+  padding: 11px;
+  font-size: 14px;
 }
 
 .sidebar h1 {

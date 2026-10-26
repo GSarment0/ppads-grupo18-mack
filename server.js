@@ -3,14 +3,21 @@ const path = require('path');
 const express = require('express');
 const pool = require('./src/config/db');
 
+const authRoutes = require('./src/routes/auth.routes');
 const notaFiscalRoutes = require('./src/routes/notaFiscal.routes');
 const dashboardRoutes = require('./src/routes/dashboard.routes');
 const loteRoutes = require('./src/routes/lote.routes');
+const relatorioRoutes = require('./src/routes/relatorio.routes');
+const { exigirAutenticacaoApi, exigirAutenticacaoPagina } = require('./src/middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Necessario atras do proxy HTTPS do Render para que req.secure seja verdadeiro.
+app.set('trust proxy', 1);
+
 app.use(express.json());
+app.use(exigirAutenticacaoPagina);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/health', async (req, res) => {
@@ -22,9 +29,13 @@ app.get('/api/health', async (req, res) => {
   }
 });
 
+app.use('/api/auth', authRoutes);
+
+app.use('/api', exigirAutenticacaoApi);
 app.use('/api/notas-fiscais', notaFiscalRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/lotes', loteRoutes);
+app.use('/api/relatorios', relatorioRoutes);
 
 app.use((err, req, res, next) => {
   if (err) {

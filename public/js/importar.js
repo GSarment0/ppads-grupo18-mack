@@ -2,7 +2,7 @@ let notaImportada = null;
 
 function mostrarMensagem(texto, tipo) {
   const container = document.getElementById('mensagem');
-  container.innerHTML = texto ? `<div class="mensagem ${tipo}">${texto}</div>` : '';
+  container.innerHTML = texto ? `<div class="mensagem ${tipo}">${escaparHtml(texto)}</div>` : '';
 }
 
 function montarLinhasItens(itens) {
@@ -11,9 +11,9 @@ function montarLinhasItens(itens) {
     .map(
       (item, indice) => `
       <tr data-indice="${indice}">
-        <td>${item.codigoEan}</td>
-        <td>${item.descricao}</td>
-        <td>${item.quantidade}</td>
+        <td>${escaparHtml(item.codigoEan)}</td>
+        <td>${escaparHtml(item.descricao)}</td>
+        <td>${escaparHtml(item.quantidade)}</td>
         <td><input type="date" class="input-validade" required /></td>
       </tr>`
     )
