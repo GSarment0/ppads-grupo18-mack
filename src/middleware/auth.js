@@ -11,7 +11,13 @@ function lerCookie(req, nome) {
   return null;
 }
 
+// Modo demonstracao: com AUTH_DESATIVADA=true no .env o login nao e exigido. Fica desligado por padrao.
+const AUTH_DESATIVADA = String(process.env.AUTH_DESATIVADA || '').toLowerCase() === 'true';
+const USUARIO_DEMO = { id: 0, nome: 'Modo demonstracao', email: '', demo: true };
+if (AUTH_DESATIVADA) console.warn('AVISO: AUTH_DESATIVADA=true - o login nao esta sendo exigido (use apenas para demonstracao local).');
+
 function usuarioDaRequisicao(req) {
+  if (AUTH_DESATIVADA) return USUARIO_DEMO;
   return validarToken(lerCookie(req, COOKIE_SESSAO));
 }
 

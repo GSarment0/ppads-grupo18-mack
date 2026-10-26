@@ -34,7 +34,7 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/me', exigirAutenticacaoApi, (req, res) => {
-  return res.status(200).json({ usuario: { nome: req.usuario.nome, email: req.usuario.email } });
+  return res.status(200).json({ usuario: { nome: req.usuario.nome, email: req.usuario.email, demo: Boolean(req.usuario.demo) } });
 });
 
 module.exports = router;

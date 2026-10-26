@@ -11,7 +11,7 @@ Repositório do aplicativo desenvolvido para a disciplina de Projeto Prático Pr
 **Aplicação publicada:** https://ppads-grupo18-mack.onrender.com
 _(plano gratuito do Render: após um tempo sem uso o serviço "dorme" e a primeira requisição pode levar de 30 a 50 segundos)._
 
-> **Acesso:** desde a Iteração 2 a aplicação exige login (e-mail e senha). Os usuários são cadastrados pelo responsável técnico (comando `npm run user:create` ou variáveis `ADMIN_*`, descritos abaixo). Na instância publicada no Render nenhum usuário foi cadastrado; por isso, para testar todas as funcionalidades, siga o passo a passo "Como executar a aplicação no seu computador".
+> **Acesso:** desde a Iteração 2 a aplicação exige login (e-mail e senha). Os usuários são cadastrados pelo responsável técnico (comando `npm run user:create` ou variáveis `ADMIN_*`, descritos abaixo). Na instância publicada no Render nenhum usuário foi cadastrado; por isso, para testar todas as funcionalidades, siga o passo a passo "Como executar a aplicação no seu computador". Para apenas demonstrar a aplicação sem cadastrar usuário, coloque `AUTH_DESATIVADA=true` no arquivo `.env` (ou nas variáveis de ambiente do Render): o login deixa de ser exigido.
 
 ## Sobre o projeto
 
@@ -164,6 +164,7 @@ Executa os testes do leitor de XML, da autenticação (hash de senha e sessão) 
 | `DB_SSL` | não (padrão `false`) | Use `true` quando o banco exigir conexão segura (bancos na nuvem). |
 | `AUTH_SECRET` | recomendada | Chave para assinar as sessões de login. Sem ela, o servidor gera uma temporária e os usuários são deslogados a cada reinício. |
 | `ADMIN_NOME`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` | não | Se definidas, o `npm run db:init` cria (ou atualiza) esse usuário. Útil em hospedagens sem acesso ao terminal. |
+| `AUTH_DESATIVADA` | não (padrão desligada) | Apenas para demonstração: com `true`, o login não é exigido e não é preciso cadastrar usuário. Não use em ambiente real. |
 
 ## Scripts disponíveis
 
